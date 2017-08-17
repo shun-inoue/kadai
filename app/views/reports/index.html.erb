@@ -1,14 +1,18 @@
 <h1>Reports#index</h1>
-<table>
 
-    <%= form_tag reports_path, :method => 'get' do %> <%#　projects_pathはモデル名で読みかえること %>
-		<p>
-			<%= text_field_tag :search1, params[:search1], :size=>"10" %> ~
-			<%= text_field_tag :search2, params[:search2], :size=>"10" %><br>
-			<%= text_field_tag :search, params[:search] %><br>
-			<%= submit_tag "検索", :user_id => nil %>
-		</p>
+<table>
+	<%= form_tag(controller: "reports", action: "index") do %>
+	<th>検索</th>
+	<tr>
+		<td><%= text_field_tag("to") %> ~ <%= text_field_tag("from") %></td></tr>
+		<td>ユーザーID : <%= text_field_tag("name") %></td></tr>
+	<tr>
+		<td><%= submit_tag("検索") %></td></tr>
+	</tr>
 	<% end %>
+</table>
+<table>
+	
     <td><a href="/reports/add/">レポート記入</a></td>
 	<% @data.each do |obj| %>
 	<tr>
@@ -18,4 +22,5 @@
 		<td><a href="/reports/edit/<%= obj.id %>">編集</a></td>
 	</tr>
 	<% end %>
+	<%= paginate @data %>
 </table>

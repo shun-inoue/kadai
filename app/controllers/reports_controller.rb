@@ -1,7 +1,21 @@
 class ReportsController < ApplicationController
   def index
-    @data = Report.all
+    @data = Report.new
+ 	  if request.post? then
+ 	    if params[:to] != nil 
+ 	      todate = "entry_date >= '#{params[:to]}' and "
+ 	    end
+ 	    if params[:from] != nil 
+ 	      fromdate = "entry_date <= '#{params[:from]}' and "
+ 	    end
+ 	    if params[:name] != nil 
+ 	      name = "user_id like '#{params[:name]}'"
+ 	    end
+ 	     @data = Report.page(params[:page]).per(10).order('user_id ASC', 'entry_date desc').where todate + fromdate + name
+    else
+    @data = Report.page(params[:page]).per(10).order('user_id ASC', 'entry_date desc')
   end
+end
 
   def add
     @msg = "レポート記入"
@@ -32,6 +46,7 @@ class ReportsController < ApplicationController
     obj.update(report_params)
     redirect_to '/reports'
   end
+
   
   private
   def report_params

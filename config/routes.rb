@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'reports/index'
   get 'reports', to: 'reports#index'
+  post 'reports/index', to: 'reports#index'
 
   get 'reports/add'
   post 'reports/add', to: 'reports#create'
