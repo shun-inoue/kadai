@@ -1,0 +1,10 @@
+<h1>Reports#show</h1>
+<p> <%= @msg %></p>
+    <table>
+        <tr><th>名前</th>
+            <td><%= @data.user.name %></td></tr>
+        <tr><th>内容</th>
+            <td><%= @data.report %></td></tr>
+        </tr>
+        <td><a href="/reports/">ホーム画面へ</a></td>
+    </table>

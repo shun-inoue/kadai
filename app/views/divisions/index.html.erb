@@ -1,0 +1,15 @@
+<h1>Divisions#index</h1>
+<table>
+    <td><a href="/divisions/add/">部署新規登録</a></td>
+	<tr>
+		<th>Id</th><th>部署名</th>
+	</tr>
+	<% @data.each do |obj| %>
+	<tr>
+		<td><%= obj.id %></td>
+		<td><a href="/divisions/<%= obj.id %>"><%= obj.name %></a></td>
+		<td><a href="/divisionss/edit/<%= obj.id %>">編集</a></td>
+		<td><a href="/divisions/delete/<%= obj.id %>">削除</a></td>
+	</tr>
+	<% end %>
+</table>

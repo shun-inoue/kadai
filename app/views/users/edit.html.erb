@@ -1,0 +1,18 @@
+<h1>Users#edit</h1>
+<p><%= @msg %></p>
+<table>
+	<%= form_for(@user, url:{controller:'users', action:'update', id:@user.id}) do |form| %>
+	<tr><th>名前</th>
+		<td><%= form.text_field :name %></td></tr>
+	<tr><th>かな</th>
+		<td><%= form.text_field :kana %></td></tr>
+	<tr><th>メモ</th>
+		<td><%= form.text_field :memo %></td></tr>
+	<tr><th>事業部</th>
+        <td><%= form.select :division_id, Division.all.map{|o| [o.name, o.id]}%></td></tr>
+	</tr>
+	<tr><th></th>
+		<td><%= form.submit "送信" %></td></tr>
+	</tr>
+	<% end %>
+</table>

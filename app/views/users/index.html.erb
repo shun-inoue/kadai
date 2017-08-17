@@ -1,0 +1,17 @@
+<h1>User#index</h1>
+<table>
+    <td><a href="/users/add/">新規登録</a></td>
+	<tr>
+		<th>Id</th><th>名前</th><th>かな</th><th>事業部</th>
+	</tr>
+	<% @data.each do |obj| %>
+	<tr>
+		<td><%= obj.id %></td>
+		<td><a href="/users/<%= obj.id %>"><%= obj.name %></a></td>
+		<td><%= obj.kana %></td>
+		<td><%= obj.division.name %></td>
+		<td><a href="/users/edit/<%= obj.id %>">編集</a></td>
+		<td><a href="/users/delete/<%= obj.id %>">削除</a></td>
+	</tr>
+	<% end %>
+</table>

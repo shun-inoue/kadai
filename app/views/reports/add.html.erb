@@ -1,0 +1,26 @@
+<h1>Reports#add</h1>
+<p><%= @msg %></p>
+<% if @report.errors.any? %>
+<ul>
+	<% @report.errors.full_messages.each do |err| %>
+		<li><%= err %></li>
+	<% end %>
+</ul>
+<% end %>
+<table>
+    <%= form_for(@report, url:{controller:'reports', action:'create'}) do |form| %>
+    <tr><th>日付</th>
+        <td><%= form.text_field :entry_date%></td></tr>
+    <tr><th>ユーザー選択</th>
+        <td><%= form.select :user_id, User.all.map{|d| [d.name, d.id]}%></td></tr>
+    <tr><th>文章</th>
+        <td><%= form.text_area :report, {cols:40, rows:10}%></td></tr>
+    </tr>
+    <tr><th></th>
+        <td><%= form.submit "送信" %></td></tr>
+        
+    </tr>
+    <% end %>
+    <td><a href="/reports/">ホーム画面へ</a></td>
+    	
+</table>

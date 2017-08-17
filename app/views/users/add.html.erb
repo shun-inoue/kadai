@@ -1,0 +1,26 @@
+<h1>Users#add</h1>
+<p><%= @msg %></p>
+<% if @user.errors.any? %>
+<ul>
+	<% @user.errors.full_messages.each do |err| %>
+		<li><%= err %></li>
+	<% end %>
+</ul>
+<% end %>
+<table>
+    <%= form_for(@user, url:{controller:'users', action:'create'}) do |form| %>
+    <tr><th>名前</th>
+        <td><%= form.text_field :name %></td></tr>
+    <tr><th>かな</th>
+        <td><%= form.text_field :kana %></td></tr>
+    <tr><th>メモ</th>
+        <td><%= form.text_area :memo %></td></tr>
+    <tr><th>事業部</th>
+        <td><%= form.select :division_id, Division.all.map{|d| [d.name, d.id]}%></td></tr>
+    </tr>
+    <tr><th></th>
+        <td><%= form.submit "送信" %></td></tr>
+    </tr>
+    <% end %>
+    	
+</table>

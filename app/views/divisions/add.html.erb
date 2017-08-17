@@ -1,0 +1,18 @@
+<h1>Divisions#add</h1>
+<p><%= @msg %></p>
+<% if @division.errors.any? %>
+<ul>
+	<% @division.errors.full_messages.each do |err| %>
+		<li><%= err %></li>
+	<% end %>
+</ul>
+<% end %>
+<table>
+    <%= form_for(@division, url:{controller:'divisions', action:'create'}) do |form| %>
+    <tr><th>部署名</th>
+        <td><%= form.text_field :name %></td></tr>
+    <tr><th></th>
+        <td><%= form.submit "送信" %></td></tr>
+    </tr>
+    <% end %>
+</table>

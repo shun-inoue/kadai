@@ -1,0 +1,15 @@
+<h1>Users#show</h1>
+<p> <%= @msg %></p>
+    <table>
+        <tr><th>Id</th>
+            <td><%= @data.id %></td></tr>
+        <tr><th>名前</th>
+            <td><%= @data.name %></td></tr>
+        <tr><th>かな</th>
+            <td><%= @data.kana %></td></tr>
+        <tr><th>メモ</th>
+            <td><%= @data.memo %></td></tr>
+        <tr><th>事業部</th>
+            <td><%= @data.division.name%></td></tr>
+        </tr>
+    </table>

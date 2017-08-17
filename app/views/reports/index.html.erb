@@ -1,0 +1,21 @@
+<h1>Reports#index</h1>
+<table>
+
+    <%= form_tag reports_path, :method => 'get' do %> <%#　projects_pathはモデル名で読みかえること %>
+		<p>
+			<%= text_field_tag :search1, params[:search1], :size=>"10" %> ~
+			<%= text_field_tag :search2, params[:search2], :size=>"10" %><br>
+			<%= text_field_tag :search, params[:search] %><br>
+			<%= submit_tag "検索", :user_id => nil %>
+		</p>
+	<% end %>
+    <td><a href="/reports/add/">レポート記入</a></td>
+	<% @data.each do |obj| %>
+	<tr>
+		<td><%= obj.entry_date %></td>
+		<td><%= obj.user.name %></td>
+		<td><a href="/reports/<%= obj.id %>">詳細</a></td>
+		<td><a href="/reports/edit/<%= obj.id %>">編集</a></td>
+	</tr>
+	<% end %>
+</table>
