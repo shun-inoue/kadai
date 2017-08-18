@@ -1,6 +1,7 @@
 class ReportsController < ApplicationController
   def index
     @data = Report.new
+    @data = Report
  	  if request.post? then
  	    if params[:to] != nil 
  	      todate = "entry_date >= '#{params[:to]}' and "
@@ -9,11 +10,11 @@ class ReportsController < ApplicationController
  	      fromdate = "entry_date <= '#{params[:from]}' and "
  	    end
  	    if params[:name] != nil 
- 	      name = "user_id like '#{params[:name]}'"
+ 	      name = "name like '#{params[:name]}'"
  	    end
- 	     @data = Report.page(params[:page]).per(10).order('user_id ASC', 'entry_date desc').where todate + fromdate + name
+ 	     @data = Report.page(params[:page]).per(10).order('user_id ASC', 'entry_date desc').joins(:user).where todate + fromdate + name
     else
-    @data = Report.page(params[:page]).per(10).order('user_id ASC', 'entry_date desc')
+    @data = Report.page(params[:page]).per(10).order('user_id ASC', 'entry_date desc').joins(:user)
   end
 end
 
@@ -34,6 +35,7 @@ end
   def show
     @msg = 'レポート内容'
     @data = Report.find(params[:id]) 
+    @user = Report.where(user_id: params[:user_id])
   end
   
   def edit

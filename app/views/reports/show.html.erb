@@ -8,3 +8,13 @@
         </tr>
         <td><a href="/reports/">ホーム画面へ</a></td>
     </table>
+    
+     <table>
+        <% @user.first(5).each do |obj| %>
+	<tr>
+		<td><a href="/reports/<%= obj.id %>/<%= obj.user_id %>"><%= obj.entry_date %></a></td>
+	</tr>
+	<% end %>
+    </table>
+    
+   

@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get 'reports/edit/:id', to: 'reports#edit'
   patch 'reports/edit/:id', to: 'reports#update'
 
-  get 'reports/:id', to: 'reports#show'
+  get 'reports/:id/:user_id', to: 'reports#show'
   
   
   

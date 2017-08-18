@@ -4,8 +4,8 @@
 	<%= form_tag(controller: "reports", action: "index") do %>
 	<th>検索</th>
 	<tr>
-		<td><%= text_field_tag("to") %> ~ <%= text_field_tag("from") %></td></tr>
-		<td>ユーザーID : <%= text_field_tag("name") %></td></tr>
+		<td><%= text_field_tag("to",value = Date.today - 3.days)%> ~ <%= text_field_tag("from", value = Date.today)%></td></tr>
+		<td>ユーザー名 : <%= text_field_tag("name") %></td></tr>
 	<tr>
 		<td><%= submit_tag("検索") %></td></tr>
 	</tr>
@@ -18,7 +18,7 @@
 	<tr>
 		<td><%= obj.entry_date %></td>
 		<td><%= obj.user.name %></td>
-		<td><a href="/reports/<%= obj.id %>">詳細</a></td>
+		<td><a href="/reports/<%= obj.id %>/<%= obj.user_id %>">詳細</a></td>
 		<td><a href="/reports/edit/<%= obj.id %>">編集</a></td>
 	</tr>
 	<% end %>
